@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import queryString from 'query-string'
 import Search from '../components/Search'
+import { fetchSearchMoviesAsync } from '../actions'
 
 class SearchQuery extends PureComponent {
   state = { search: '' }
@@ -28,7 +30,9 @@ class SearchQuery extends PureComponent {
   }
 
   handleQueryChange(query) {
-    console.log('handleQueryChange', query) // TODO: replace this with api call
+    const { dispatch } = this.props
+
+    dispatch(fetchSearchMoviesAsync(query))
   }
 
   getQuery(location) {
@@ -55,4 +59,4 @@ class SearchQuery extends PureComponent {
   }
 }
 
-export default withRouter(SearchQuery)
+export default connect()(withRouter(SearchQuery))
