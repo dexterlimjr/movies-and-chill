@@ -1,23 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import SearchQuery from '../containers/SearchQuery'
+import MovieList from '../components/MovieList'
 
-const SearchPage = (props) => {
-  console.log(props.movies.toJS())
-  return (
-    <div>
-      <SearchQuery />
-      {
-        props.movies.map((movie) =>
-          <div key={movie.get('id')}>
-            <span>title: {movie.get('title')}, </span>
-            <span>popularity: {movie.get('popularity')}</span>
+const SearchPage = ({ movies, isLoading }) =>
+  <div>
+    <SearchQuery />
+    <div style={{ margin: '40px 0' }}>
+      { isLoading ?
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <CircularProgress />
           </div>
-        )
+        : <MovieList movies={movies}/>
       }
     </div>
-  )
-}
+  </div>
 
-const mapStateToProps = ({ movies }) => ({ movies: movies.get('searchResults') })
+const mapStateToProps = ({ movies }) =>
+  ({ movies: movies.get('searchResults'), isLoading: movies.get('isFetchingSearch') })
 export default connect(mapStateToProps)(SearchPage)
