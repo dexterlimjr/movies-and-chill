@@ -1,15 +1,15 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Home from '../components/Home'
-import Search from '../components/Search'
+import SearchPage from '../containers/SearchPage'
+import HomePage from '../containers/HomePage'
 
 const _404 = () => <div>404</div>
 
 export default () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/search" component={Search} />
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/search" component={SearchPage} />
       <Route component={_404} />
     </Switch>
   </Router>
