@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import InputBase from '@material-ui/core/InputBase'
 import IconButton from '@material-ui/core/IconButton'
 import Paper from '@material-ui/core/Paper'
@@ -29,6 +30,13 @@ const Search = (props) => {
       </IconButton>
     </Paper>
   )
+}
+
+Search.proptypes = {
+  classes: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onEnterPress: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 }
 
 const styles = {
