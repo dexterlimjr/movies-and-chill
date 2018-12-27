@@ -9,9 +9,9 @@ import MovieList from '../components/MovieList'
 
 class HomePage extends PureComponent {
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetchPopularMoviesAsync())
-    dispatch(fetchTrendingMoviesAsync())
+    const { dispatch, trendingMovies, popularMovies } = this.props
+    if (!trendingMovies.size) dispatch(fetchPopularMoviesAsync())
+    if (!popularMovies.size) dispatch(fetchTrendingMoviesAsync())
   }
 
   render() {
@@ -46,6 +46,9 @@ const styles = {
     margin: '40px 0',
   },
   sectionTitle: {
+    '@media (max-width: 768px)': {
+      padding: 0,
+    },
     display: 'flex',
     justifyContent: 'center',
     fontSize: 24,
