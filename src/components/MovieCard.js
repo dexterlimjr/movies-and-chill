@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
+import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
@@ -18,19 +19,21 @@ const MovieCard = ({ classes, movie }) => (
         </div>
       </Grid>
       <Grid item xs={9} sm={8} md={9} lg={8}>
-        <Paper className={classes.paper}>
-          <Grid container spacing={8}>
-            <Grid item xs={6}>
-              <div className={classNames(classes.infoLarge, classes.title)}>{movie.get('title')}</div>
+        <Link to={`/movies/${movie.get('id')}`} style={{ textDecoration: 'none' }}>
+          <Paper className={classes.paper}>
+            <Grid container spacing={8}>
+              <Grid item xs={6}>
+                <div className={classNames(classes.infoLarge, classes.title)}>{movie.get('title')}</div>
+              </Grid>
+              <Grid item xs={6}>
+                <div className={classes.infoLarge}>{movie.get('popularity')}</div>
+              </Grid>
+              <Grid item xs={12}>
+                <h4 className={classes.infoMedium}>{movie.get('overview')}</h4>
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              <div className={classes.infoLarge}>{movie.get('popularity')}</div>
-            </Grid>
-            <Grid item xs={12}>
-              <h4 className={classes.infoMedium}>{movie.get('overview')}</h4>
-            </Grid>
-          </Grid>
-        </Paper>
+          </Paper>
+        </Link>
       </Grid>
     </Grid>
   </div>

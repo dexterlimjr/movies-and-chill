@@ -1,11 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
-import IconButton from '@material-ui/core/IconButton'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import BackToHome from '../components/BackToHome'
 import SearchQuery from '../containers/SearchQuery'
-import Loader from '../containers/Loader'
+import Loader from '../components/Loader'
 import MovieList from '../components/MovieList'
 import Title from '../components/Title'
 
@@ -13,11 +11,7 @@ const SearchPage = ({ classes, history, movies, isLoading }) =>
   <div className={classes.container}>
     <Title value="Search" />
     <div className={classes.header}>
-      <Link to="/">
-        <IconButton className={classes.iconButton} aria-label="ArrowBack">
-          <ArrowBackIcon />
-        </IconButton>
-      </Link>
+      <BackToHome />
       <SearchQuery />
     </div>
     <div className={classes.body}>

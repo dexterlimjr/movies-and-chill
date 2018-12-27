@@ -16,12 +16,8 @@ export const fetchSearchMoviesAsync = (query) => (dispatch, getState) => {
 
   fetch(getApiUrl('/search/movie', { query }))
     .then(res => res.json())
-    .then(({ results }) => {
-      dispatch(fetchSearchMoviesSuccess(results))
-    })
-    .catch(err => {
-      dispatch(fetchSearchMoviesFail())
-    })
+    .then(({ results }) => dispatch(fetchSearchMoviesSuccess(results)))
+    .catch(err => dispatch(fetchSearchMoviesFail()))
 }
 
 export const fetchPopularMoviesAsync = () => (dispatch, getState) => {
@@ -29,12 +25,8 @@ export const fetchPopularMoviesAsync = () => (dispatch, getState) => {
 
   fetch(getApiUrl('/movie/popular'))
     .then(res => res.json())
-    .then(({ results }) => {
-      dispatch(fetchPopularMoviesSuccess(results))
-    })
-    .catch(err => {
-      dispatch(fetchPopularMoviesFail())
-    })
+    .then(({ results }) => dispatch(fetchPopularMoviesSuccess(results)))
+    .catch(err => dispatch(fetchPopularMoviesFail()))
 }
 
 export const fetchTrendingMoviesAsync = () => (dispatch, getState) => {
@@ -42,10 +34,6 @@ export const fetchTrendingMoviesAsync = () => (dispatch, getState) => {
 
   fetch(getApiUrl('/trending/movie/day'))
     .then(res => res.json())
-    .then(({ results }) => {
-      dispatch(fetchTrendingMoviesSuccess(results))
-    })
-    .catch(err => {
-      dispatch(fetchTrendingMoviesFail())
-    })
+    .then(({ results }) => dispatch(fetchTrendingMoviesSuccess(results)))
+    .catch(err => dispatch(fetchTrendingMoviesFail()))
 }

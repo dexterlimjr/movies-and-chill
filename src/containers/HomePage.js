@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import { fetchPopularMoviesAsync, fetchTrendingMoviesAsync } from '../actions/movies'
 import SearchQuery from '../containers/SearchQuery'
 import Title from '../components/Title'
-import Loader from '../containers/Loader'
+import Loader from '../components/Loader'
 import MovieList from '../components/MovieList'
 
 class HomePage extends PureComponent {
