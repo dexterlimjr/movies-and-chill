@@ -41,9 +41,10 @@ Search.proptypes = {
 
 const styles = {
   container: {
-    padding: '2px 4px',
     display: 'flex',
+    flex: 1,
     alignItems: 'center',
+    padding: '2px 4px',
     maxWidth: 600,
   },
   input: {
