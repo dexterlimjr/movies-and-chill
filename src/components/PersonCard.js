@@ -2,61 +2,58 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
-import { getPosterUrl } from '../utils/api'
+import { getProfileUrl } from '../utils/api'
 
-const MovieDetailsCard = ({ classes, movie }) => {
-  if (!movie.size) return null
+const PersonCard = ({ classes, person }) => {
+  if (!person.size) return null
 
-  const sortedCast = movie.get('cast').sort((a, b) => {
-    if (a.get('cast_id') < b.get('cast_id')) { return -1 }
-    if (a.get('cast_id') > b.get('cast_id')) { return 1 }
+  const sortedCast = person.get('cast').sort((a, b) => {
+    if (a.get('popularity') > b.get('popularity')) { return -1 }
+    if (a.get('popularity') < b.get('popularity')) { return 1 }
     return 0
   })
 
   return (
     <div className={classes.container}>
-      <div className={classes.header}>
-        <div className={classes.title}>{movie.get('title')}</div>
-        <div className={classes.year}>{movie.get('release_date').slice(0, 4)}</div>
-      </div>
+      <div className={classes.name}>{person.get('name')}</div>
       <Grid container spacing={24}>
-        <Grid item xs={12} sm={12} md={4} lg={4}>
+        <Grid item xs={12} sm={12} md={3} lg={3}>
           <div className={classes.imgCard}>
             <img
               className={classes.img}
               alt="movie-img"
-              src={getPosterUrl(movie.get('poster_path'), 'w342')}
+              src={getProfileUrl(person.get('profile_path'), 'w185')}
             />
           </div>
         </Grid>
-        <Grid item xs={12} sm={12} md={8} lg={8}>
-          <div className={classes.subHeading}>Overview</div>
+        <Grid item xs={12} sm={12} md={9} lg={9}>
+          <div className={classes.subHeading}>Place of Birth</div>
           <div className={classes.subtext}>
-            {movie.get('overview')}
+            {person.get('place_of_birth')}
           </div>
 
-          <div className={classes.subHeading}>Runtime</div>
+          <div className={classes.subHeading}>Biography</div>
           <div className={classes.subtext}>
-            {movie.get('runtime')} mins
+            {person.get('biography')}
           </div>
 
-          <div className={classes.subHeading}>Genres</div>
+          <div className={classes.subHeading}>Birthday</div>
           <div className={classes.subtext}>
-            {movie.get('genres').map(g => g.get('name')).join(', ') }
+            {person.get('birthday')}
           </div>
 
-          <div className={classes.subHeading}>Popularity</div>
+          <div className={classes.subHeading}>Also Known As</div>
           <div className={classes.subtext}>
-            {movie.get('popularity')}
+            {person.get('also_known_as').join(', ') }
           </div>
 
-          <div className={classes.subHeading}>Casts</div>
+          <div className={classes.subHeading}>Also acted in</div>
           <div className={classes.subtext}>
             {
               sortedCast.map(c =>
-                <Link key={`cast-${c.get('id')}`} to={`/person/${c.get('id')}`}>
+                <Link key={`cast-${c.get('credit_id')}`} to={`/movies/${c.get('id')}`}>
                   <span className={classes.cast}>
-                    {c.get('name')}
+                    {c.get('original_title')}
                   </span>
                 </Link>
               )
@@ -72,19 +69,12 @@ const styles = {
   container: {
     padding: 10,
   },
-  header: {
+  name: {
     display: 'flex',
     alignItems: 'center',
     fontWeight: 600,
     paddingBottom: 20,
-  },
-  title: {
     fontSize: 24,
-  },
-  year: {
-    fontSize: 20,
-    color: 'grey',
-    paddingLeft: 6,
   },
   imgCard: {
     display: 'flex',
@@ -110,4 +100,4 @@ const styles = {
   },
 }
 
-export default withStyles(styles)(MovieDetailsCard)
+export default withStyles(styles)(PersonCard)
