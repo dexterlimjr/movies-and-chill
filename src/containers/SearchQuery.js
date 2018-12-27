@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
 import Search from '../components/Search'
-import { fetchSearchMoviesAsync } from '../actions'
+import { fetchSearchMoviesAsync } from '../actions/movies'
 
 class SearchQuery extends PureComponent {
   state = { search: '' }

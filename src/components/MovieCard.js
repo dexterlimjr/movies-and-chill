@@ -63,6 +63,12 @@ const styles = {
     color: '#686768',
   },
   infoLarge: {
+    '@media (max-width: 768px)': {
+      fontSize: 24,
+    },
+    '@media (max-width: 320px)': {
+      fontSize: 18,
+    },
     fontSize: 32,
     fontWeight: 600,
     paddingTop: 20,

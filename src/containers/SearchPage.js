@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import CircularProgress from '@material-ui/core/CircularProgress'
 import { withStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import SearchQuery from '../containers/SearchQuery'
+import Loader from '../containers/Loader'
 import MovieList from '../components/MovieList'
 import Title from '../components/Title'
 
@@ -21,12 +21,9 @@ const SearchPage = ({ classes, history, movies, isLoading }) =>
       <SearchQuery />
     </div>
     <div className={classes.body}>
-      { isLoading ?
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <CircularProgress />
-          </div>
-        : <MovieList movies={movies}/>
-      }
+      <Loader isLoading={isLoading}>
+        <MovieList movies={movies}/>
+      </Loader>
     </div>
   </div>
 
