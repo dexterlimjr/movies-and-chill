@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
@@ -20,7 +21,7 @@ const MovieCard = ({ classes, movie }) => (
         <Paper className={classes.paper}>
           <Grid container spacing={8}>
             <Grid item xs={6}>
-              <div className={classes.infoLarge}>{movie.get('title')}</div>
+              <div className={classNames(classes.infoLarge, classes.title)}>{movie.get('title')}</div>
             </Grid>
             <Grid item xs={6}>
               <div className={classes.infoLarge}>{movie.get('popularity')}</div>
@@ -56,10 +57,15 @@ const styles = {
     padding: 2,
     textAlign: 'center',
     color: 'grey',
+    background: 'linear-gradient(173deg, #fdfdfd, #fefefe)',
+  },
+  title: {
+    color: '#686768',
   },
   infoLarge: {
     fontSize: 32,
     fontWeight: 600,
+    paddingTop: 20,
   },
   infoMedium: {
     fontSize: 14,
